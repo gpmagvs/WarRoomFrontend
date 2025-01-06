@@ -1,6 +1,7 @@
 <template>
   <div>Home</div>
   <div>{{ t }}</div>
+  <div v-for="i in 100" :key="i">This is fake content</div>
 </template>
 
 <script setup>

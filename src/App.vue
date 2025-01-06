@@ -1,31 +1,30 @@
 <script setup>
+import SideMenu from "./components/layout/SideMenu.vue";
+import { ref } from "vue";
+import Header from "./components/layout/Header.vue";
+
+const isCollapse = ref(true);
 </script>
 
 <template>
-  <div class="w-100 h-100">
-    <el-menu class="el-menu-vertical" :collapse="false" router>
-      <el-menu-item index="/">
-        <el-icon>
-          <House />
-        </el-icon>
-        <span>Home</span>
-      </el-menu-item>
-
-      <el-menu-item index="/about">
-        <el-icon>
-          <InfoFilled />
-        </el-icon>
-        <span>About</span>
-      </el-menu-item>
-    </el-menu>
-    <router-view></router-view>
+  <div class="common-layout">
+    <Header @toggleCollapse="isCollapse = $event" />
+    <el-container>
+      <el-container>
+        <el-aside class width="fit-content">
+          <SideMenu :isCollapse="isCollapse" />
+        </el-aside>
+        <el-main class="bg-success rounded-1" style="height: calc(100vh - 55px)">
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <style scoped>
-.container {
-  padding: 0;
-  margin: 0;
+.common-layout {
+  height: calc(100vh - 40px);
 }
 .logo {
   height: 6em;
