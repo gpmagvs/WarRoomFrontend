@@ -1,11 +1,3 @@
-<script setup>
-import SideMenu from "./components/layout/SideMenu.vue";
-import { ref } from "vue";
-import Header from "./components/layout/Header.vue";
-
-const isCollapse = ref(true);
-</script>
-
 <template>
   <div class="common-layout">
     <Header @toggleCollapse="isCollapse = $event" />
@@ -14,13 +6,24 @@ const isCollapse = ref(true);
         <el-aside class width="fit-content">
           <SideMenu :isCollapse="isCollapse" />
         </el-aside>
-        <el-main class="bg-success rounded-1" style="height: calc(100vh - 55px)">
-          <router-view></router-view>
+        <el-main class="main-container rounded-1">
+          <router-view v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </router-view>
         </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
+<script setup>
+import SideMenu from "./components/layout/SideMenu.vue";
+import { ref } from "vue";
+import Header from "./components/layout/Header.vue";
+
+const isCollapse = ref(false);
+</script>
 
 <style scoped>
 .common-layout {
@@ -37,5 +40,11 @@ const isCollapse = ref(true);
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+.main-container {
+  padding: 0.1rem;
+  height: calc(100vh - 55px);
+  /* border: 1px solid red; */
+  background-color: #181818;
 }
 </style>

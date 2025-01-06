@@ -1,11 +1,56 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-
+import Version from '../views/Version.vue'
+import FieldInfoView from '../views/FieldInfoView.vue'
+import EquipmentinfoView from '../views/EquipmentinfoView.vue'
+import {
+    Document,
+    Menu as IconMenu,
+    Location,
+    Cpu,
+    HomeFilled,
+    Flag
+} from "@element-plus/icons-vue";
 const routes = [
     {
         path: '/',
         name: 'Home',
-        component: Home
+        component: Home,
+        meta: {
+            title: '首頁',
+            icon: HomeFilled,
+            showInMenu: true
+        },
+    },
+    {
+        path: '/field',
+        name: 'Field',
+        component: FieldInfoView,
+        meta: {
+            title: '場域資訊',
+            icon: Flag,
+            showInMenu: true
+        },
+    },
+    {
+        path: '/equipment',
+        name: 'Equipment',
+        component: EquipmentinfoView,
+        meta: {
+            title: '設備資訊',
+            icon: Flag,
+            showInMenu: true
+        },
+    },
+    {
+        path: '/version',
+        name: 'Version',
+        component: Version,
+        meta: {
+            title: '版本資訊',
+            icon: Cpu,
+            showInMenu: true
+        },
     },
     // {
     //     path: '/about',

@@ -1,68 +1,56 @@
 <template>
-  <!-- <el-button @click="isCollapse = !isCollapse">></el-button> -->
   <el-menu
-    default-active="2"
+    :default-active="activeMenu"
     class="el-menu-vertical-demo"
     active-text-color="#ffd04b"
     background-color="rgb(15, 15, 15)"
     text-color="#fff"
     :collapse="isCollapse"
+    router
     @open="handleOpen"
     @close="handleClose"
     style="border: none"
   >
-    <el-sub-menu index="1">
-      <template #title>
-        <el-icon>
-          <location />
-        </el-icon>
-        <span>Navigator One</span>
-      </template>
-      <el-menu-item-group>
+    <!-- 遞迴渲染選單 -->
+    <template v-for="route in menuRoutes" :key="route.path">
+      <!-- 有子選單的情況 -->
+      <el-sub-menu v-if="route.children?.length" :index="route.path">
         <template #title>
-          <span>Group One</span>
+          <el-icon>
+            <component :is="route.meta?.icon" />
+          </el-icon>
+          <span>{{ route.meta?.title }}</span>
         </template>
-        <el-menu-item index="1-1">item one</el-menu-item>
-        <el-menu-item index="1-2">item two</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">item three</el-menu-item>
-      </el-menu-item-group>
-      <el-sub-menu index="1-4">
-        <template #title>
-          <span>item four</span>
+
+        <template v-for="child in route.children" :key="child.path">
+          <el-menu-item v-if="child.meta?.showInMenu" :index="`${route.path}/${child.path}`">
+            <el-icon>
+              <component :is="child.meta?.icon" />
+            </el-icon>
+            <template #title>{{ child.meta?.title }}</template>
+          </el-menu-item>
         </template>
-        <el-menu-item index="1-4-1">item one</el-menu-item>
       </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="2">
-      <el-icon>
-        <icon-menu />
-      </el-icon>
-      <template #title>Navigator Two</template>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <el-icon>
-        <document />
-      </el-icon>
-      <template #title>Navigator Three</template>
-    </el-menu-item>
-    <el-menu-item index="4" route="/setting">
-      <el-icon>
-        <setting />
-      </el-icon>
-      <template #title>Navigator Four</template>
-    </el-menu-item>
+
+      <!-- 無子選單的情況 -->
+      <el-menu-item v-else-if="route.meta?.showInMenu" :index="route.path">
+        <el-icon>
+          <component :is="route.meta?.icon" />
+        </el-icon>
+        <template #title>{{ route.meta?.title }}</template>
+      </el-menu-item>
+    </template>
   </el-menu>
 </template>
-  
   <script lang="ts" setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import {
   Document,
   Menu as IconMenu,
   Location,
   Setting,
+  HomeFilled,
 } from "@element-plus/icons-vue";
 
 const props = defineProps({
@@ -71,6 +59,20 @@ const props = defineProps({
     default: true,
   },
 });
+
+const router = useRouter();
+const route = useRoute();
+
+// 獲取要顯示在選單中的路由
+const menuRoutes = computed(() => {
+  return router.options.routes.filter((route) => route.meta?.showInMenu);
+});
+
+// 當前活動的選單項
+const activeMenu = computed(() => {
+  return route.path;
+});
+
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
 };
