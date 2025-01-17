@@ -68,8 +68,7 @@ const route = useRoute();
 
 // 當前活動的選單項
 const activeMenu = computed(() => {
-  // 移除開頭的 /WarRoomFrontend 路徑
-  return route.path.replace("/WarRoomFrontend", "");
+  return route.path;
 });
 
 // 獲取要顯示在選單中的路由
