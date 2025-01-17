@@ -63,6 +63,11 @@ const routes = [
             showInMenu: true
         },
     },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        redirect: { name: 'Home' }  // 重定向到首頁
+      }
     // {
     //     path: '/about',
     //     name: 'About',

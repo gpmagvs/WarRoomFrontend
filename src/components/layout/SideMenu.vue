@@ -1,5 +1,19 @@
 <template>
-  <el-menu :default-active="activeMenu" class="el-menu-vertical-demo" active-text-color="#ffd04b" background-color="rgb(15, 15, 15)" text-color="#fff" :collapse="isCollapse" router @open="handleOpen" @close="handleClose" style="border: none" :show-timeout="10" :hide-timeout="10" :collapse-transition="false">
+  <el-menu
+    :default-active="activeMenu"
+    class="el-menu-vertical-demo"
+    active-text-color="#ffd04b"
+    background-color="rgb(15, 15, 15)"
+    text-color="#fff"
+    :collapse="isCollapse"
+    router
+    @open="handleOpen"
+    @close="handleClose"
+    style="border: none"
+    :show-timeout="10"
+    :hide-timeout="10"
+    :collapse-transition="false"
+  >
     <!-- 遞迴渲染選單 -->
     <template v-for="route in menuRoutes" :key="route.path">
       <!-- 有子選單的情況 -->
@@ -52,14 +66,22 @@ const props = defineProps({
 const router = useRouter();
 const route = useRoute();
 
-// 獲取要顯示在選單中的路由
-const menuRoutes = computed(() => {
-  return router.options.routes.filter((route) => route.meta?.showInMenu);
-});
-
 // 當前活動的選單項
 const activeMenu = computed(() => {
-  return route.path;
+  // 移除開頭的 /WarRoomFrontend 路徑
+  return route.path.replace("/WarRoomFrontend", "");
+});
+
+// 獲取要顯示在選單中的路由
+const menuRoutes = computed(() => {
+  const routes = router.options.routes.filter(
+    (route) => route.meta?.showInMenu
+  );
+  // 確保路由路徑正確
+  return routes.map((route) => ({
+    ...route,
+    path: route.path.startsWith("/") ? route.path : `/${route.path}`,
+  }));
 });
 
 const handleOpen = (key: string, keyPath: string[]) => {
