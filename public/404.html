@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // 取得當前 URL 路徑
+    const segment = 1
+    const path = window.location.pathname
+    const repo = '/WarRoomFrontend'  // 例如: '/WarRoomFrontend'
+    
+    sessionStorage.redirect = path
+    window.location.href = 
+      path.slice(0, segment + repo.length) + '/?route=' + 
+      path.slice(segment + repo.length)
+  </script>
+</head>
+</html>

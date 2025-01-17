@@ -66,8 +66,8 @@ const routes = [
     {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
-        redirect: { name: 'Home' }  // 重定向到首頁
-      }
+        redirect: '/404.html'
+    },
     // {
     //     path: '/about',
     //     name: 'About',
@@ -100,7 +100,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHashHistory('/WarRoomFrontend/'),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes
 })
 
