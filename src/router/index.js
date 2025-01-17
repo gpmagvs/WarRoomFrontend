@@ -1,9 +1,4 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Version from '../views/Version.vue'
-import FieldInfoView from '../views/FieldInfoView.vue'
-import EquipmentinfoView from '../views/EquipmentinfoView.vue'
-import TransportPerformanceStatusViewPage from '../views/TransportPerformanceStatusViewPage.vue'
 import {
     Document,
     Menu as IconMenu,
@@ -12,11 +7,12 @@ import {
     HomeFilled,
     Flag
 } from "@element-plus/icons-vue";
+
 const routes = [
     {
         path: '/',
         name: 'Home',
-        component: Home,
+        component: () => import('../views/Home.vue'),
         meta: {
             title: '首頁',
             icon: HomeFilled,
@@ -26,7 +22,7 @@ const routes = [
     {
         path: '/field',
         name: 'Field',
-        component: FieldInfoView,
+        component: () => import('../views/FieldInfoView.vue'),
         meta: {
             title: '場域資訊',
             icon: Flag,
@@ -36,7 +32,7 @@ const routes = [
     {
         path: '/transportPerformanceStats',
         name: 'TransportPerformanceStats',
-        component: TransportPerformanceStatusViewPage,
+        component: () => import('../views/TransportPerformanceStatusViewPage.vue'),
         meta: {
             title: '搬運效能統計',
             icon: Flag,
@@ -46,7 +42,7 @@ const routes = [
     {
         path: '/equipment',
         name: 'Equipment',
-        component: EquipmentinfoView,
+        component: () => import('../views/EquipmentinfoView.vue'),
         meta: {
             title: '設備資訊',
             icon: Flag,
@@ -56,7 +52,7 @@ const routes = [
     {
         path: '/version',
         name: 'Version',
-        component: Version,
+        component: () => import('../views/Version.vue'),
         meta: {
             title: '版本資訊',
             icon: Cpu,
@@ -100,7 +96,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHashHistory(import.meta.env.BASE_URL),
     routes
 })
 
