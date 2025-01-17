@@ -1,0 +1,1 @@
+import{r as l,o as u,a as n,c as r,b as e,t as i,u as d,F as s,d as m}from"./index-DOp6jeaH.js";const v={__name:"Home",setup(c){var t=l(0);return u(()=>{setInterval(()=>{t.value++},1e3)}),(p,a)=>(n(),r(s,null,[a[0]||(a[0]=e("div",null,"Home",-1)),e("div",null,i(d(t)),1),(n(),r(s,null,m(100,o=>e("div",{key:o},"This is fake content")),64))],64))}};export{v as default};
