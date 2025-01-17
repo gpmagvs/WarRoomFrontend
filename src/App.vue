@@ -9,7 +9,7 @@
         <el-main class="main-container rounded-1">
           <router-view v-slot="{ Component }">
             <keep-alive>
-              <component :is="Component" v-if="Component" />
+              <component :is="Component" />
             </keep-alive>
           </router-view>
         </el-main>
