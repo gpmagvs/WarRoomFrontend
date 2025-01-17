@@ -1,5 +1,5 @@
 <template>
-  <div class="common-layout">
+  <div class="common-layout" style="overflow-x: auto">
     <Header @toggleCollapse="isCollapse = $event" />
     <el-container>
       <el-container>
@@ -27,7 +27,7 @@ const isCollapse = ref(true);
 
 <style scoped>
 .common-layout {
-  height: calc(100vh - 40px);
+  height: calc(100vh - 10px);
 }
 .logo {
   height: 6em;

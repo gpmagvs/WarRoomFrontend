@@ -1,9 +1,11 @@
 <template>
   <div class="eqp-unload-waiting-time-trend">
-    <el-select size="large" v-model="selectedEqp" placeholder="選擇設備" class="mb-2">
-      <el-option v-for="eqp in eqpList" :key="eqp.value" :label="eqp.label" :value="eqp.value" />
-    </el-select>
-    <TrendChart :dailyStats="dailyStats" lineColor="rgb(32, 160, 255)" normalBarColor="rgb(103, 194, 58)" alarmBarColor="rgb(250, 27, 73)" type="line-bar" :alarmValue="90" yAxisName="等待時間" :isExceedThreshold="alarmCompare" :title="title" />
+    <div class="w-100 d-flex flex-row justify-content-between">
+      <el-select size="large" v-model="selectedEqp" placeholder="選擇設備" class="mb-2">
+        <el-option v-for="eqp in eqpList" :key="eqp.value" :label="eqp.label" :value="eqp.value" />
+      </el-select>
+    </div>
+    <TrendChart v-loading="loading" :dailyStats="dailyStats" lineColor="rgb(32, 160, 255)" normalBarColor="rgb(103, 194, 58)" alarmBarColor="rgb(250, 27, 73)" type="line-bar" :alarmValue="90" yAxisName="等待時間" :isExceedThreshold="alarmCompare" :title="title" />
   </div>
 </template>
 
@@ -11,13 +13,13 @@
 import TrendChart from '../common/ChartComponents/TrendChart.vue'
 import { ref, watch } from 'vue'
 const alarmCompare = (value) => {
-  return value > 190
+  return value > 290
 }
 
 const dailyStats = ref([
   {
     date: '2024-02-20',
-    value: 185.2
+    value: 189.5
   },
   {
     date: '2024-02-21',
@@ -37,7 +39,7 @@ const dailyStats = ref([
   },
   {
     date: '2024-02-25',
-    value: 194.7
+    value: 300
   },
   {
     date: '2024-02-26',
@@ -85,8 +87,14 @@ const eqpList = ref([
 
 const selectedEqp = ref(undefined)
 const title = ref('標題')
+const loading = ref(false);
+
 watch(selectedEqp, (newVal) => {
   title.value = `Unload 平均等待時間 - ${newVal}`
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+  }, 400);
 })
 
 </script>

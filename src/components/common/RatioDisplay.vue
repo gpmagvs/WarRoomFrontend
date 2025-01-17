@@ -1,6 +1,6 @@
 <template>
   <div class="w-100 d-flex flex-row   justify-content-center">
-    <el-progress type="circle" :percentage="props.percentage" stroke-width="15" width="200">
+    <el-progress type="circle" :percentage="props.percentage" stroke-width="15" width="180">
       <template #default="{ percentage }">
         <div class="d-flex flex-column">
           <span class="percentage-value ">{{ percentage }}%</span>
@@ -35,12 +35,12 @@ const totalTasksNum = computed(() => {
 
 <style lang="scss" scoped>
 .percentage-value {
-  font-size: 44px;
+  font-size: 35px;
   font-weight: bold;
   color: white;
   letter-spacing: 3px;
 }
 .percentage-label {
-  font-size: 22px;
+  font-size: 15px;
 }
 </style>

@@ -15,7 +15,7 @@ const props = defineProps({
 })
 
 const alarmCompare = (value) => {
-  return value < 90
+  return value < 80
 }
 
 </script>

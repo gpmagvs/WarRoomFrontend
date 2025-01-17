@@ -43,7 +43,7 @@ const updateChart = () => {
       left: 'center',
       textStyle: {
         color: '#ffffff',
-        fontSize: 18
+        fontSize: 15
       }
     },
     tooltip: {

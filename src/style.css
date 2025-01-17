@@ -24,7 +24,7 @@
 html.dark {
   /* 自定义深色背景颜色 */
   --el-bg-color: #000000;
-  --el-color-primary: rgb(0, 32, 90);
+  --el-color-primary: rgb(32, 160, 255);
   --el-color-primary-light-3: #003468;
 }
 
@@ -61,8 +61,8 @@ h1 {
   text-align: center;
   padding: 0;
   margin: 0;
-  height: calc(100vh - 10px);
-  width: calc(100vw - 0.1rem);
+  height: calc(100vh - 1px);
+  width: calc(100vw);
 }
 
 @media (prefers-color-scheme: light) {
