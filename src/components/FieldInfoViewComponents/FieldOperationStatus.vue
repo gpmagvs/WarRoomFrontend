@@ -11,11 +11,11 @@
         </div>
         <div>
           <span class="me-2">上層連線</span>
-          <el-tag effect="dark">?</el-tag>
+          <el-tag effect="dark" type="warning">?</el-tag>
         </div>
         <div>
           <span class="me-2">派工模式</span>
-          <el-tag effect="dark">?</el-tag>
+          <el-tag effect="dark" type="warning">?</el-tag>
         </div>
       </div>
     </CardContainer>

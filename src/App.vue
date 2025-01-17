@@ -22,7 +22,7 @@ import SideMenu from "./components/layout/SideMenu.vue";
 import { ref } from "vue";
 import Header from "./components/layout/Header.vue";
 
-const isCollapse = ref(false);
+const isCollapse = ref(true);
 </script>
 
 <style scoped>

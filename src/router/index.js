@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Version from '../views/Version.vue'
 import FieldInfoView from '../views/FieldInfoView.vue'
 import EquipmentinfoView from '../views/EquipmentinfoView.vue'
+import TransportPerformanceStatusViewPage from '../views/TransportPerformanceStatusViewPage.vue'
 import {
     Document,
     Menu as IconMenu,
@@ -28,6 +29,16 @@ const routes = [
         component: FieldInfoView,
         meta: {
             title: '場域資訊',
+            icon: Flag,
+            showInMenu: true
+        },
+    },
+    {
+        path: '/transportPerformanceStats',
+        name: 'TransportPerformanceStats',
+        component: TransportPerformanceStatusViewPage,
+        meta: {
+            title: '搬運效能統計',
             icon: Flag,
             showInMenu: true
         },

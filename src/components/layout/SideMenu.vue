@@ -1,16 +1,5 @@
 <template>
-  <el-menu
-    :default-active="activeMenu"
-    class="el-menu-vertical-demo"
-    active-text-color="#ffd04b"
-    background-color="rgb(15, 15, 15)"
-    text-color="#fff"
-    :collapse="isCollapse"
-    router
-    @open="handleOpen"
-    @close="handleClose"
-    style="border: none"
-  >
+  <el-menu :default-active="activeMenu" class="el-menu-vertical-demo" active-text-color="#ffd04b" background-color="rgb(15, 15, 15)" text-color="#fff" :collapse="isCollapse" router @open="handleOpen" @close="handleClose" style="border: none" :show-timeout="10" :hide-timeout="10" :collapse-transition="false">
     <!-- 遞迴渲染選單 -->
     <template v-for="route in menuRoutes" :key="route.path">
       <!-- 有子選單的情況 -->

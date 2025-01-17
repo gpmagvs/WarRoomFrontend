@@ -22,11 +22,11 @@ import { Postcard } from '@element-plus/icons-vue'
 .my-card {
   border: 1px solid #656565;
   border-radius: 5px;
-  margin: 5px;
+  margin: 1px;
   ::v-deep .el-card__header {
     background-color: var(--card-header-bg-color);
     font-weight: bold;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
     padding: 5px 10px;
     border-bottom: 1px solid #656565;
   }
